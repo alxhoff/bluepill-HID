@@ -189,3 +189,196 @@ to our loop will cause our device to send 'A' button presses every second.
 
 That concludes the cube example. 
 
+### Diff of changes from mouse to keyboard
+
+```
+diff --git a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
+index bcd15b3..b14f291 100644
+--- a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
++++ b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
+@@ -54,7 +54,7 @@
+ 
+ #define USB_HID_CONFIG_DESC_SIZ       34
+ #define USB_HID_DESC_SIZ              9
+-#define HID_MOUSE_REPORT_DESC_SIZE    74
++#define HID_MOUSE_REPORT_DESC_SIZE    78
+ 
+ #define HID_DESCRIPTOR_TYPE           0x21
+ #define HID_REPORT_DESC               0x22
+diff --git a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
+index cd81d80..a65cd60 100644
+--- a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
++++ b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
+@@ -158,7 +158,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ]  __ALIGN_
+   0x01,         /*bNumEndpoints*/
+   0x03,         /*bInterfaceClass: HID*/
+   0x01,         /*bInterfaceSubClass : 1=BOOT, 0=no boot*/
+-  0x02,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/
++  0x01,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/^M
+   0,            /*iInterface: Index of string descriptor*/
+   /******************** Descriptor of Joystick Mouse HID ********************/
+   /* 18 */
+@@ -216,52 +216,47 @@ __ALIGN_BEGIN static uint8_t USBD_HID_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
+ 
+:...skipping...
+diff --git a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
+index bcd15b3..b14f291 100644
+--- a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
++++ b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Inc/usbd_hid.h
+@@ -54,7 +54,7 @@
+ 
+ #define USB_HID_CONFIG_DESC_SIZ       34
+ #define USB_HID_DESC_SIZ              9
+-#define HID_MOUSE_REPORT_DESC_SIZE    74
++#define HID_MOUSE_REPORT_DESC_SIZE    78^M
+ 
+ #define HID_DESCRIPTOR_TYPE           0x21
+ #define HID_REPORT_DESC               0x22
+diff --git a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
+index cd81d80..a65cd60 100644
+--- a/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
++++ b/cube/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c
+@@ -158,7 +158,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ]  __ALIGN_
+   0x01,         /*bNumEndpoints*/
+   0x03,         /*bInterfaceClass: HID*/
+   0x01,         /*bInterfaceSubClass : 1=BOOT, 0=no boot*/
+-  0x02,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/
++  0x01,         /*nInterfaceProtocol : 0=none, 1=keyboard, 2=mouse*/^M
+   0,            /*iInterface: Index of string descriptor*/
+   /******************** Descriptor of Joystick Mouse HID ********************/
+   /* 18 */
+@@ -216,52 +216,47 @@ __ALIGN_BEGIN static uint8_t USBD_HID_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
+ 
+ __ALIGN_BEGIN static uint8_t HID_MOUSE_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE]  __ALIGN_END =
+ {
+-  0x05,   0x01,
+-  0x09,   0x02,
+-  0xA1,   0x01,
+-  0x09,   0x01,
+-  
+-  0xA1,   0x00,
+-  0x05,   0x09,
+-  0x19,   0x01,
+-  0x29,   0x03,
+-  
+-  0x15,   0x00,
+-  0x25,   0x01,
+-  0x95,   0x03,
+-  0x75,   0x01,
+-  
+-  0x81,   0x02,
+-  0x95,   0x01,
+-  0x75,   0x05,
+-  0x81,   0x01,
+-  
+-  0x05,   0x01,
+-  0x09,   0x30,
+-  0x09,   0x31,
+-  0x09,   0x38,
+-  
+-  0x15,   0x81,
+-  0x25,   0x7F,
+-  0x75,   0x08,
+-  0x95,   0x03,
+-  
+-  0x81,   0x06,
+-  0xC0,   0x09,
+-  0x3c,   0x05,
+-  0xff,   0x09,
+-  
+-  0x01,   0x15,
+-  0x00,   0x25,
+-  0x01,   0x75,
+-  0x01,   0x95,
+-  
+-  0x02,   0xb1,
+-  0x22,   0x75,
+-  0x06,   0x95,
+-  0x01,   0xb1,
+-  
+-  0x01,   0xc0
++     // 78 bytes^M
++  0x05, 0x01,        // Usage Page (Generic Desktop Ctrls)^M
++  0x09, 0x06,        // Usage (Keyboard)^M
++  0xA1, 0x01,        // Collection (Application)^M
++  0x85, 0x01,        //   Report ID (1)^M
++  0x05, 0x07,        //   Usage Page (Kbrd/Keypad)^M
++  0x75, 0x01,        //   Report Size (1)^M
++  0x95, 0x08,        //   Report Count (8)^M
++  0x19, 0xE0,        //   Usage Minimum (0xE0)^M
++  0x29, 0xE7,        //   Usage Maximum (0xE7)^M
++  0x15, 0x00,        //   Logical Minimum (0)^M
++  0x25, 0x01,        //   Logical Maximum (1)^M
++  0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)^M
++  0x95, 0x03,        //   Report Count (3)^M
++  0x75, 0x08,        //   Report Size (8)^M
++  0x15, 0x00,        //   Logical Minimum (0)^M
++  0x25, 0x64,        //   Logical Maximum (100)^M
++  0x05, 0x07,        //   Usage Page (Kbrd/Keypad)^M
++  0x19, 0x00,        //   Usage Minimum (0x00)^M
++  0x29, 0x65,        //   Usage Maximum (0x65)^M
++  0x81, 0x00,        //   Input (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)^M
++  0xC0,              // End Collection^M
++  0x05, 0x0C,        // Usage Page (Consumer)^M
++  0x09, 0x01,        // Usage (Consumer Control)^M
++  0xA1, 0x01,        // Collection (Application)^M
++  0x85, 0x02,        //   Report ID (2)^M
++  0x05, 0x0C,        //   Usage Page (Consumer)^M
++  0x15, 0x00,        //   Logical Minimum (0)^M
++  0x25, 0x01,        //   Logical Maximum (1)^M
++  0x75, 0x01,        //   Report Size (1)^M
++  0x95, 0x08,        //   Report Count (8)^M
++  0x09, 0xB5,        //   Usage (Scan Next Track)^M
++  0x09, 0xB6,        //   Usage (Scan Previous Track)^M
++  0x09, 0xB7,        //   Usage (Stop)^M
++  0x09, 0xB8,        //   Usage (Eject)^M
++  0x09, 0xCD,        //   Usage (Play/Pause)^M
++  0x09, 0xE2,        //   Usage (Mute)^M
++  0x09, 0xE9,        //   Usage (Volume Increment)^M
++  0x09, 0xEA,        //   Usage (Volume Decrement)^M
++  0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)^M
++  0xC0,              // End Collection^M
+ }; 
+ 
+ /**
+diff --git a/cube/Src/main.c b/cube/Src/main.c
+index a271350..6a16268 100644
+--- a/cube/Src/main.c
++++ b/cube/Src/main.c
+@@ -66,7 +66,20 @@ struct mouseHID_t {
+     uint8_t y;
+     uint8_t wheel;
+ };
++struct keyboardHID_t {^M
++       uint8_t id;^M
++       uint8_t modifiers;^M
++       uint8_t key1;^M
++       uint8_t key2;^M
++       uint8_t key3;^M
++};^M
++struct mediaHID_t {^M
++       uint8_t id;^M
++       uint8_t keys;^M
++};^M
+ struct mouseHID_t mouseHID = { .x = 10 };
++struct keyboardHID_t keyboardHID = { .id = 1 };^M
++struct mediaHID_t mediaHID = { .id = 2 };^M
+ /* USER CODE END PTD */
+ 
+ /* Private define ------------------------------------------------------------*/
+@@ -262,7 +275,13 @@ void StartDefaultTask(void const * argument)
+   for(;;)
+   {
+     osDelay(1000);
+-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mouseHID, sizeof(mouseHID));
++    keyboardHID.modifiers = (1 << 1);  // Left shift^M
++    keyboardHID.key1 = 0x04; // Letter a^M
++    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));^M
++    HAL_Delay(30);^M
++    keyboardHID.modifiers = 0;^M
++    keyboardHID.key1 = 0;^M
++    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));^M
+   }
+   /* USER CODE END 5 */ 
+ }
+```
