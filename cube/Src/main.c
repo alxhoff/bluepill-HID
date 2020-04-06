@@ -66,7 +66,20 @@ struct mouseHID_t {
     uint8_t y;
     uint8_t wheel;
 };
+struct keyboardHID_t {
+	uint8_t id;
+	uint8_t modifiers;
+	uint8_t key1;
+	uint8_t key2;
+	uint8_t key3;
+};
+struct mediaHID_t {
+	uint8_t id;
+	uint8_t keys;
+};
 struct mouseHID_t mouseHID = { .x = 10 };
+struct keyboardHID_t keyboardHID = { .id = 1 };
+struct mediaHID_t mediaHID = { .id = 2 };
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -262,7 +275,13 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
     osDelay(1000);
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mouseHID, sizeof(mouseHID));
+    keyboardHID.modifiers = (1 << 1);  // Left shift
+    keyboardHID.key1 = 0x04; // Letter a
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+    HAL_Delay(30);
+    keyboardHID.modifiers = 0;
+    keyboardHID.key1 = 0;
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
   }
   /* USER CODE END 5 */ 
 }
