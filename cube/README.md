@@ -14,9 +14,11 @@ After doing this you can clock generate code, making sure when asked to use "Mak
 
 Now we need to add a few little changes. I will commit the generated files now and then the modifications so we can see the changes through a diff. Now we need to modify a few small things and create a little loop to send some HID commands.
 
-In `usb_device.c` there is the `USBD_HandleTypeDef` usb handle called `hUsbDeviceFS`, this is the handle to the core USB device that we will wish to send our HID report through. To access this in `main.c` we will need to add an `extern` definition of it to `usb_device.h`.
+In `usb_device.c` there is the `USBD_HandleTypeDef` usb handle called `hUsbDeviceFS`, this is the handle to the core USB device that we will wish to send our HID report through. To access this in `main.c` we will need to add an `extern` definition of it to `usb_device.h`. Now inside `usbd_hid.h` is the function `USBD_HID_SendReport` which we will want to use, do let's include that file to our main. 
 
-Now inside `usbd_hid.h` is the function `USBD_HID_SendReport` which we will want to use, do let's include that file to our main. Next, and without really describing what HID descriptors are/are writtern/do let me just say the the current HID descriptor being used is defined in `Middlewares/ST/ST32_USB_Device_Library/Class/Src/usbd_hid.c` in the static array `HID_MOUSE_ReportDesc`. This descriptor describes a mouse HID device where two 4 bit values are sent, the pressed buttons, the x value change, the y value change and the scroll wheel change.
+## Mouse HID
+
+Next, and without really describing what HID descriptors are/are writtern/do let me just say the the current HID descriptor being used is defined in `Middlewares/ST/ST32_USB_Device_Library/Class/Src/usbd_hid.c` in the static array `HID_MOUSE_ReportDesc`. This descriptor describes a mouse HID device where two 4 bit values are sent, the pressed buttons, the x value change, the y value change and the scroll wheel change.
 
 For now we will not touch this but instead create a struct in main that we can use to create mouse HID reports to send.
 
@@ -47,3 +49,143 @@ USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mouseHID, sizeof(mouseHID));
 For this quick and dirty example, after making the binary, I copied it to replace the elf compiled by [bluepill cmake build](https://github.com/alxhoff/bluepill). Meaning I could just run `make flash` from the [bluepill cmake build](https://github.com/alxhoff/bluepill) build directory to flash the new elf.
 
 Plugging in a micro USB cable to the bluepill you should see the mouse move slightly.
+
+### Diff of changes
+
+A complete diff of the changes made to get the mouse working
+
+```
+diff --git a/cube/Inc/usb_device.h b/cube/Inc/usb_device.h
+index 44d7b84..e049a50 100644
+--- a/cube/Inc/usb_device.h
++++ b/cube/Inc/usb_device.h
+@@ -61,6 +61,7 @@
+ #include "usbd_def.h"
+ 
+ /* USER CODE BEGIN INCLUDE */
++extern USBD_HandleTypeDef hUsbDeviceFS;^M
+ 
+ /* USER CODE END INCLUDE */
+ 
+diff --git a/cube/Src/main.c b/cube/Src/main.c
+index d434ee7..a271350 100644
+--- a/cube/Src/main.c
++++ b/cube/Src/main.c
+@@ -60,7 +60,13 @@
+ 
+ /* Private typedef -----------------------------------------------------------*/
+ /* USER CODE BEGIN PTD */
+-
++struct mouseHID_t {^M
++    uint8_t buttons;^M
++    uint8_t x;^M
++    uint8_t y;^M
++    uint8_t wheel;^M
++};^M
++struct mouseHID_t mouseHID = { .x = 10 };^M
+ /* USER CODE END PTD */
+ 
+ /* Private define ------------------------------------------------------------*/
+@@ -255,7 +261,8 @@ void StartDefaultTask(void const * argument)
+   /* Infinite loop */
+   for(;;)
+   {
+-    osDelay(1);
++    osDelay(1000);^M
++    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mouseHID, sizeof(mouseHID));^M
+   }
+   /* USER CODE END 5 */ 
+ }
+
+```
+
+## Keyboard HID
+
+Now to send a keyboard HID report we will need to change the USB descriptor and add the appropriate data structures to send. Again without going into USB descriptors, the USB descriptor for a keyboard sending 3 button presses and media keys is as follows
+
+```
+ // 78 bytes
+  0x05, 0x01,        // Usage Page (Generic Desktop Ctrls)
+  0x09, 0x06,        // Usage (Keyboard)
+  0xA1, 0x01,        // Collection (Application)
+  0x85, 0x01,        //   Report ID (1)
+  0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+  0x75, 0x01,        //   Report Size (1)
+  0x95, 0x08,        //   Report Count (8)
+  0x19, 0xE0,        //   Usage Minimum (0xE0)
+  0x29, 0xE7,        //   Usage Maximum (0xE7)
+  0x15, 0x00,        //   Logical Minimum (0)
+  0x25, 0x01,        //   Logical Maximum (1)
+  0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+  0x95, 0x03,        //   Report Count (3)
+  0x75, 0x08,        //   Report Size (8)
+  0x15, 0x00,        //   Logical Minimum (0)
+  0x25, 0x64,        //   Logical Maximum (100)
+  0x05, 0x07,        //   Usage Page (Kbrd/Keypad)
+  0x19, 0x00,        //   Usage Minimum (0x00)
+  0x29, 0x65,        //   Usage Maximum (0x65)
+  0x81, 0x00,        //   Input (Data,Array,Abs,No Wrap,Linear,Preferred State,No Null Position)
+  0xC0,              // End Collection
+  0x05, 0x0C,        // Usage Page (Consumer)
+  0x09, 0x01,        // Usage (Consumer Control)
+  0xA1, 0x01,        // Collection (Application)
+  0x85, 0x02,        //   Report ID (2)
+  0x05, 0x0C,        //   Usage Page (Consumer)
+  0x15, 0x00,        //   Logical Minimum (0)
+  0x25, 0x01,        //   Logical Maximum (1)
+  0x75, 0x01,        //   Report Size (1)
+  0x95, 0x08,        //   Report Count (8)
+  0x09, 0xB5,        //   Usage (Scan Next Track)
+  0x09, 0xB6,        //   Usage (Scan Previous Track)
+  0x09, 0xB7,        //   Usage (Stop)
+  0x09, 0xB8,        //   Usage (Eject)
+  0x09, 0xCD,        //   Usage (Play/Pause)
+  0x09, 0xE2,        //   Usage (Mute)
+  0x09, 0xE9,        //   Usage (Volume Increment)
+  0x09, 0xEA,        //   Usage (Volume Decrement)
+  0x81, 0x02,        //   Input (Data,Var,Abs,No Wrap,Linear,Preferred State,No Null Position)
+  0xC0,              // End Collection
+```
+
+In `Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c` we will want to change the USB descriptor array I mentioned before (`HID_MOUSE_ReportDesc). Even though it's no longer a mouse report we will leave the name as it is. Changing this array to the new descriptor means our USB device will now be able to send keyboard packets instead of mouse packets. We will just need to make two small modifications before we are done modifying the descriptor configuration. In the same file in the array `USBD_HID_CfgDesc` there is a byte describing `nInterfaceProtocol`, this needs to be changed from 2 (mouse) to 1(keyboard). Finally in the corresponding `usbd_hid.h` file we will need to change the value of `HID_MOUSE_REPORT_DESC_SIZE` from 74 to 78.
+
+We should now be able to add our structures for our keyboard and media reports.
+
+``` 
+struct keyboardHID_t {
+	uint8_t id;
+	uint8_t modifiers;
+	uint8_t key1;
+	uint8_t key2;
+	uint8_t key3;
+};
+struct mediaHID_t {
+	uint8_t id;
+	uint8_t keys;
+};
+```
+
+The USB descriptor sends keyboard reports with an `id` of 1 and `media` with an `id` of 2.
+
+Instantiating our reports:
+
+```
+struct keyboardHID_t keyboardHID = { .id = 1 };
+struct mediaHID_t mediaHID = { .id = 2 };
+```
+
+Now adding something like
+
+```
+keyboardHID.modifiers = (1 << 1);  // Left shift
+keyboardHID.key1 = 0x04; // Letter a
+USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+HAL_Delay(30);
+keyboardHID.modifiers = 0;
+keyboardHID.key1 = 0;
+USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+```
+to our loop will cause our device to send 'A' button presses every second.
+
+That concludes the cube example. 
+
