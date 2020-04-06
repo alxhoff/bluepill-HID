@@ -60,7 +60,13 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+struct mouseHID_t {
+    uint8_t buttons;
+    uint8_t x;
+    uint8_t y;
+    uint8_t wheel;
+};
+struct mouseHID_t mouseHID = { .x = 10 };
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -255,7 +261,8 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    osDelay(1000);
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t *)&mouseHID, sizeof(mouseHID));
   }
   /* USER CODE END 5 */ 
 }
