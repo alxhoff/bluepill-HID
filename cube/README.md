@@ -147,7 +147,12 @@ Now to send a keyboard HID report we will need to change the USB descriptor and 
   0xC0,              // End Collection
 ```
 
-In `Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c` we will want to change the USB descriptor array I mentioned before (`HID_MOUSE_ReportDesc). Even though it's no longer a mouse report we will leave the name as it is. Changing this array to the new descriptor means our USB device will now be able to send keyboard packets instead of mouse packets. We will just need to make two small modifications before we are done modifying the descriptor configuration. In the same file in the array `USBD_HID_CfgDesc` there is a byte describing `nInterfaceProtocol`, this needs to be changed from 2 (mouse) to 1(keyboard). Finally in the corresponding `usbd_hid.h` file we will need to change the value of `HID_MOUSE_REPORT_DESC_SIZE` from 74 to 78.
+In `Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c` we will want to change the USB descriptor array I mentioned before (`HID_MOUSE_ReportDesc`). 
+Even though it's no longer a mouse report we will leave the name as it is. 
+Changing this array to the new descriptor means our USB device will now be able to send keyboard packets instead of mouse packets. 
+We will just need to make two small modifications before we are done modifying the descriptor configuration. 
+In the same file in the array `USBD_HID_CfgDesc` there is a byte describing `nInterfaceProtocol`, this needs to be changed from 2 (mouse) to 1(keyboard). 
+Finally in the corresponding `usbd_hid.h` file we will need to change the value of `HID_MOUSE_REPORT_DESC_SIZE` from 74 to 78.
 
 We should now be able to add our structures for our keyboard and media reports.
 
