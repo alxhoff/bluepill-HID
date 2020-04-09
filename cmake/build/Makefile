@@ -231,6 +231,33 @@ clean_all/fast:
 	$(MAKE) -f CMakeFiles/clean_all.dir/build.make CMakeFiles/clean_all.dir/build
 .PHONY : clean_all/fast
 
+HID_config/usbd_hid.o: HID_config/usbd_hid.c.o
+
+.PHONY : HID_config/usbd_hid.o
+
+# target to build an object file
+HID_config/usbd_hid.c.o:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_config/usbd_hid.c.o
+.PHONY : HID_config/usbd_hid.c.o
+
+HID_config/usbd_hid.i: HID_config/usbd_hid.c.i
+
+.PHONY : HID_config/usbd_hid.i
+
+# target to preprocess a source file
+HID_config/usbd_hid.c.i:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_config/usbd_hid.c.i
+.PHONY : HID_config/usbd_hid.c.i
+
+HID_config/usbd_hid.s: HID_config/usbd_hid.c.s
+
+.PHONY : HID_config/usbd_hid.s
+
+# target to generate assembly for a file
+HID_config/usbd_hid.c.s:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_config/usbd_hid.c.s
+.PHONY : HID_config/usbd_hid.c.s
+
 Src/freertos.o: Src/freertos.c.o
 
 .PHONY : Src/freertos.o
@@ -807,33 +834,6 @@ lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.
 	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.s
 .PHONY : lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.s
 
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.o: lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.o
-
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.o
-
-# target to build an object file
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.o:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.o
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.o
-
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.i: lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.i
-
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.i
-
-# target to preprocess a source file
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.i:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.i
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.i
-
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.s: lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.s
-
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.s
-
-# target to generate assembly for a file
-lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.s:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.s
-.PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.s
-
 lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o: lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.o
 
 .PHONY : lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
@@ -1174,6 +1174,9 @@ help:
 	@echo "... debug"
 	@echo "... flash"
 	@echo "... STM32F1_bluepill.elf"
+	@echo "... HID_config/usbd_hid.o"
+	@echo "... HID_config/usbd_hid.i"
+	@echo "... HID_config/usbd_hid.s"
 	@echo "... Src/freertos.o"
 	@echo "... Src/freertos.i"
 	@echo "... Src/freertos.s"
@@ -1238,9 +1241,6 @@ help:
 	@echo "... lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.o"
 	@echo "... lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.i"
 	@echo "... lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.s"
-	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.o"
-	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.i"
-	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.s"
 	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o"
 	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.i"
 	@echo "... lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.s"

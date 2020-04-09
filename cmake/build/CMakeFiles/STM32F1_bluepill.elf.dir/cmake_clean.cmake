@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/STM32F1_bluepill.elf.dir/HID_config/usbd_hid.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/freertos.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/main.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/stm32f1xx_hal_msp.c.o"
@@ -21,7 +22,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.o"
-  "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Class/HID/Src/usbd_hid.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.o"
