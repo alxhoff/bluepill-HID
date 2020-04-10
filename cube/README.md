@@ -20,6 +20,50 @@ In `usb_device.c` there is the `USBD_HandleTypeDef` usb handle called `hUsbDevic
 
 Next, and without really describing what HID descriptors are/are writtern/do let me just say the the current HID descriptor being used is defined in `Middlewares/ST/ST32_USB_Device_Library/Class/Src/usbd_hid.c` in the static array `HID_MOUSE_ReportDesc`. This descriptor describes a mouse HID device where two 4 bit values are sent, the pressed buttons, the x value change, the y value change and the scroll wheel change.
 
+The full descriptor is
+
+``` c
+0x05,   0x01, // < USAGE_PAGE(generic desktop)
+0x09,   0x02, // < USAGE(mouse)
+0xA1,   0x01, // < COLLECTION(application)
+0x09,   0x01, // < USAGE(pointer)
+0xA1,   0x00, // < COLLECTION(physical)
+0x05,   0x09, // < USAGE_PAGE(button)
+0x19,   0x01, // < USAGE_MINIMUM(button 1)
+0x29,   0x03, // < USAGE_MAXIMUM(button 3)
+0x15,   0x00, // < LOGICAL_MINIMUM(0)
+0x25,   0x01, // < LOGICAL_MAXIMUM(1)
+0x95,   0x03, // < REPORT_COUNT(3)
+0x75,   0x01, // < REPORT_SIZE(1)
+0x81,   0x02, // < INPUT(data, Var, Abs)
+0x95,   0x01, // < REPORT_COUNT(1)
+0x75,   0x05, // < REPORT_SIZE(5) **padding
+0x81,   0x01, // < INPUT(const, array, Abs)
+0x05,   0x01, // < USAGE_PAGE(generic desktop)
+0x09,   0x30, // < USAGE(x)
+0x09,   0x31, // < USAGE(y)
+0x09,   0x38, // < USAGE(wheel)
+0x15,   0x81, // < LOGICAL_MINIMUM(-127)
+0x25,   0x7F, // < LOGICAL_MAXIMUM(127)
+0x75,   0x08, // < REPORT_SIZE(8)
+0x95,   0x03, // < REPORT_COUNT(3)
+0x81,   0x06, // < INPUT(data, var, rel)
+0xC0,    //END_COLLECTION
+0x09,   0x3c, // < USAGE(motion wakeup)
+0x05,   0xff, // < USAGE_PAGE(UNKNOWN)
+0x09,   0x01, // < USAGE(pointer)
+0x15,   0x00, // < LOGICAL_MINIMUM(0)
+0x25,   0x01, // < LOGICAL_MAXIMUM(1)
+0x75,   0x01, // < REPORT_SIZE(1)
+0x95,   0x02, // < REPORT_COUNT(2)
+0xb1,   0x22, // < FEATURE(no preferred, variable)
+0x75,   0x06, // < REPORT_SIZE(6)
+0x95,   0x01, // < REPORT_COUNT(1)
+0xb1,   0x01, // < FEATURE(constant)s
+0xc0     // < END_COLLECTION
+// length = 74 bytes
+  ```
+
 For now we will not touch this but instead create a struct in main that we can use to create mouse HID reports to send.
 
 ```

@@ -55,31 +55,33 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usbd_hid.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 struct mouseHID_t {
+    uint8_t id;
     uint8_t buttons;
-    uint8_t x;
-    uint8_t y;
-    uint8_t wheel;
+    int8_t x;
+    int8_t y;
+    int8_t wheel;
 };
+
 struct keyboardHID_t {
 	uint8_t id;
 	uint8_t modifiers;
-	uint8_t key1;
-	uint8_t key2;
-	uint8_t key3;
+    uint8_t keys[6];
 };
+
 struct mediaHID_t {
 	uint8_t id;
 	uint8_t keys;
 };
-struct mouseHID_t mouseHID = { .x = 10 };
-struct keyboardHID_t keyboardHID = { .id = 1 };
-struct mediaHID_t mediaHID = { .id = 2 };
+
+struct mouseHID_t mouseHID = { .id =1 };
+struct keyboardHID_t keyboardHID = { .id = 2 };
+struct mediaHID_t mediaHID = { .id = 3 };
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -272,10 +274,20 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
+  mouseHID.x = 100;
   for(;;)
   {
     osDelay(1000);
+    keyboardHID.keys[0] = 0x04; // a
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &mouseHID, sizeof(struct mouseHID_t));
+    osDelay(20);
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+
+    osDelay(20);
+    keyboardHID.keys[0] = 0x00; // Clear button, ie. button released
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
   }
   /* USER CODE END 5 */ 
 }

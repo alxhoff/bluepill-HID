@@ -294,7 +294,7 @@ STM32LL_INCLUDE_DIR:PATH=/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1
 STM32_CHIP:STRING=STM32F103xB
 
 //No help, variable specified on the command line.
-USBDevice_HID_CONFIG_DIR:UNINITIALIZED=HID_config
+USBDevice_HID_CONFIG_DIR:UNINITIALIZED=HID_hybrid_config
 
 
 ########################
@@ -508,7 +508,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_STM32HAL:INTERNAL=[/home/alxhoff/git/GitHub/bluepil
 //Details about finding STM32LL
 FIND_PACKAGE_MESSAGE_DETAILS_STM32LL:INTERNAL=[/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Inc][/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_usb.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_pwr.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_rcc.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c][v()]
 //Details about finding USBDevice
-FIND_PACKAGE_MESSAGE_DETAILS_USBDevice:INTERNAL=[/home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_config;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Inc][/home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_config/usbd_hid.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c][v()]
+FIND_PACKAGE_MESSAGE_DETAILS_USBDevice:INTERNAL=[HID_hybrid_config;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Inc][HID_hybrid_config/usbd_hid.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c;/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c][v()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //stm32f1 chip types
