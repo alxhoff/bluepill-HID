@@ -293,6 +293,9 @@ STM32LL_INCLUDE_DIR:PATH=/home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1
 //STM32 chip to build for
 STM32_CHIP:STRING=STM32F103xB
 
+//No help, variable specified on the command line.
+USBDevice_HID_CONFIG_DIR:UNINITIALIZED=HID_config
+
 
 ########################
 # INTERNAL cache entries
