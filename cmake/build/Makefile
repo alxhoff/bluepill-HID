@@ -231,32 +231,32 @@ clean_all/fast:
 	$(MAKE) -f CMakeFiles/clean_all.dir/build.make CMakeFiles/clean_all.dir/build
 .PHONY : clean_all/fast
 
-HID_hybrid_config/usbd_hid.o: HID_hybrid_config/usbd_hid.c.o
+HID_nkro_keyboard_config/usbd_hid.o: HID_nkro_keyboard_config/usbd_hid.c.o
 
-.PHONY : HID_hybrid_config/usbd_hid.o
+.PHONY : HID_nkro_keyboard_config/usbd_hid.o
 
 # target to build an object file
-HID_hybrid_config/usbd_hid.c.o:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o
-.PHONY : HID_hybrid_config/usbd_hid.c.o
+HID_nkro_keyboard_config/usbd_hid.c.o:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o
+.PHONY : HID_nkro_keyboard_config/usbd_hid.c.o
 
-HID_hybrid_config/usbd_hid.i: HID_hybrid_config/usbd_hid.c.i
+HID_nkro_keyboard_config/usbd_hid.i: HID_nkro_keyboard_config/usbd_hid.c.i
 
-.PHONY : HID_hybrid_config/usbd_hid.i
+.PHONY : HID_nkro_keyboard_config/usbd_hid.i
 
 # target to preprocess a source file
-HID_hybrid_config/usbd_hid.c.i:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.i
-.PHONY : HID_hybrid_config/usbd_hid.c.i
+HID_nkro_keyboard_config/usbd_hid.c.i:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.i
+.PHONY : HID_nkro_keyboard_config/usbd_hid.c.i
 
-HID_hybrid_config/usbd_hid.s: HID_hybrid_config/usbd_hid.c.s
+HID_nkro_keyboard_config/usbd_hid.s: HID_nkro_keyboard_config/usbd_hid.c.s
 
-.PHONY : HID_hybrid_config/usbd_hid.s
+.PHONY : HID_nkro_keyboard_config/usbd_hid.s
 
 # target to generate assembly for a file
-HID_hybrid_config/usbd_hid.c.s:
-	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.s
-.PHONY : HID_hybrid_config/usbd_hid.c.s
+HID_nkro_keyboard_config/usbd_hid.c.s:
+	$(MAKE) -f CMakeFiles/STM32F1_bluepill.elf.dir/build.make CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.s
+.PHONY : HID_nkro_keyboard_config/usbd_hid.c.s
 
 Src/freertos.o: Src/freertos.c.o
 
@@ -1174,9 +1174,9 @@ help:
 	@echo "... debug"
 	@echo "... flash"
 	@echo "... STM32F1_bluepill.elf"
-	@echo "... HID_hybrid_config/usbd_hid.o"
-	@echo "... HID_hybrid_config/usbd_hid.i"
-	@echo "... HID_hybrid_config/usbd_hid.s"
+	@echo "... HID_nkro_keyboard_config/usbd_hid.o"
+	@echo "... HID_nkro_keyboard_config/usbd_hid.i"
+	@echo "... HID_nkro_keyboard_config/usbd_hid.s"
 	@echo "... Src/freertos.o"
 	@echo "... Src/freertos.i"
 	@echo "... Src/freertos.s"

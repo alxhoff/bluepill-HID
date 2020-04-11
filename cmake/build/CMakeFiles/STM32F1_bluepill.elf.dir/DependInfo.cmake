@@ -26,11 +26,11 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "../lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Inc"
   "../lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Include"
   "../lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Include"
-  "../HID_hybrid_config"
+  "../HID_nkro_keyboard_config"
   "../lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
   )
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_hybrid_config/usbd_hid.c" "/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o"
+  "/home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_nkro_keyboard_config/usbd_hid.c" "/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o"
   "/home/alxhoff/git/GitHub/bluepill-HID/cmake/Src/freertos.c" "/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles/STM32F1_bluepill.elf.dir/Src/freertos.c.o"
   "/home/alxhoff/git/GitHub/bluepill-HID/cmake/Src/main.c" "/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles/STM32F1_bluepill.elf.dir/Src/main.c.o"
   "/home/alxhoff/git/GitHub/bluepill-HID/cmake/Src/stm32f1xx_hal_msp.c" "/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles/STM32F1_bluepill.elf.dir/Src/stm32f1xx_hal_msp.c.o"
@@ -84,7 +84,7 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "../lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Inc"
   "../lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Include"
   "../lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Include"
-  "../HID_hybrid_config"
+  "../HID_nkro_keyboard_config"
   "../lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Inc"
   )
 

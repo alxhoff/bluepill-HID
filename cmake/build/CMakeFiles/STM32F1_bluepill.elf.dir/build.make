@@ -469,18 +469,18 @@ CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Devi
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building ASM object CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.s.o"
 	/usr/bin/arm-none-eabi-gcc $(ASM_DEFINES) $(ASM_INCLUDES) $(ASM_FLAGS) -o CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.s.o -c /home/alxhoff/git/GitHub/bluepill-HID/cmake/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.s
 
-CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o: CMakeFiles/STM32F1_bluepill.elf.dir/flags.make
-CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o: ../HID_hybrid_config/usbd_hid.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o   -c /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_hybrid_config/usbd_hid.c
+CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o: CMakeFiles/STM32F1_bluepill.elf.dir/flags.make
+CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o: ../HID_nkro_keyboard_config/usbd_hid.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alxhoff/git/GitHub/bluepill-HID/cmake/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building C object CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o   -c /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_nkro_keyboard_config/usbd_hid.c
 
-CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.i"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_hybrid_config/usbd_hid.c > CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.i
+CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.i"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_nkro_keyboard_config/usbd_hid.c > CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.i
 
-CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.s"
-	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_hybrid_config/usbd_hid.c -o CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.s
+CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.s"
+	/usr/bin/arm-none-eabi-gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/alxhoff/git/GitHub/bluepill-HID/cmake/HID_nkro_keyboard_config/usbd_hid.c -o CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.s
 
 CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.o: CMakeFiles/STM32F1_bluepill.elf.dir/flags.make
 CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.o: ../lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c
@@ -554,7 +554,7 @@ STM32F1_bluepill_elf_OBJECTS = \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.o" \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c.o" \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.s.o" \
-"CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o" \
+"CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o" \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.o" \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.o" \
 "CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.o"
@@ -593,7 +593,7 @@ STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmw
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_ll_utils.c.o
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/system_stm32f1xx.c.o
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Drivers/CMSIS/Device/ST/STM32F1xx/Source/Templates/gcc/startup_stm32f103xb.s.o
-STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o
+STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.c.o
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.c.o
 STM32F1_bluepill.elf: CMakeFiles/STM32F1_bluepill.elf.dir/lib/STM32F1-Cube-Firmware/Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.c.o

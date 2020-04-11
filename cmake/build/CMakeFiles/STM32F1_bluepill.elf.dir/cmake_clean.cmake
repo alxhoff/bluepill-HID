@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/STM32F1_bluepill.elf.dir/HID_hybrid_config/usbd_hid.c.o"
+  "CMakeFiles/STM32F1_bluepill.elf.dir/HID_nkro_keyboard_config/usbd_hid.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/freertos.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/main.c.o"
   "CMakeFiles/STM32F1_bluepill.elf.dir/Src/stm32f1xx_hal_msp.c.o"

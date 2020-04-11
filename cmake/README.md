@@ -32,6 +32,13 @@ struct bootHID_t {
 }
 ```
 
+Below I have included rough examples of the following:
+
+- Mouse
+- Kebyoard with LEDs and media keys
+- Composite keyboard mouse
+- N-key roll over keyboard (write up in README in [HID_nkro_keyboard_config](HID_nkro_keyboard_config))
+
 # Examples 
 
 ## Mouse

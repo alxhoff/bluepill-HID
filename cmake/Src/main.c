@@ -79,6 +79,12 @@ struct mediaHID_t {
 	uint8_t keys;
 };
 
+struct nkroHID_t {
+    uint8_t id;
+    uint8_t bitmap[HID_REPORT_BYTES - 1];
+};
+
+struct nkroHID_t nkroHID = {0};
 struct mouseHID_t mouseHID = { .id =1 };
 struct keyboardHID_t keyboardHID = { .id = 2 };
 struct mediaHID_t mediaHID = { .id = 3 };
@@ -267,6 +273,8 @@ static void MX_GPIO_Init(void)
   * @retval None
   */
 /* USER CODE END Header_StartDefaultTask */
+#define NKRO_SET_BIT(entry, x)  entry.bitmap[HID_REPORT_BYTES - 1] |= (1 << x) 
+#define NKRO_ZERO(entry) memset(&entry.bitmap, 0, sizeof(entry.bitmap))
 void StartDefaultTask(void const * argument)
 {
   /* init code for USB_DEVICE */
@@ -278,16 +286,16 @@ void StartDefaultTask(void const * argument)
   for(;;)
   {
     osDelay(1000);
-    keyboardHID.keys[0] = 0x04; // a
+    /** NKRO_SET_BIT(nkroHID, 0x04); // a */
+    nkroHID.bitmap[15] |= (1 << 30);
+    /** nkroHID.bitmap[HID_REPORT_BYTES - 1] |= (1 << 4); */
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &mouseHID, sizeof(struct mouseHID_t));
-    osDelay(20);
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &nkroHID, sizeof(struct nkroHID_t));
 
-    osDelay(20);
-    keyboardHID.keys[0] = 0x00; // Clear button, ie. button released
-    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t));
+    /** osDelay(20); */
+    /** NKRO_ZERO(nkroHID); */
+    /** HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); */
+    /** USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &nkroHID, sizeof(struct nkroHID_t)); */
   }
   /* USER CODE END 5 */ 
 }
