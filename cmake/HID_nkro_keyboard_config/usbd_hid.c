@@ -139,13 +139,14 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ]  __ALIGN_
 {
   0x09, /* bLength: Configuration Descriptor size */
   USB_DESC_TYPE_CONFIGURATION, /* bDescriptorType: Configuration */
-  USB_HID_CONFIG_DESC_SIZ,
   /* wTotalLength: Bytes returned */
   0x00,
+  USB_HID_CONFIG_DESC_SIZ,
   0x01,         /*bNumInterfaces: 1 interface*/
   0x01,         /*bConfigurationValue: Configuration value*/
   0x00,         /*iConfiguration: Index of string descriptor describing
   the configuration*/
+  //0x20,         /*bmAttributes: bus powered and Support Remote Wake-up */
   0xE0,         /*bmAttributes: bus powered and Support Remote Wake-up */
   0x32,         /*MaxPower 100 mA: this current is used for detecting Vbus*/
   
@@ -164,7 +165,7 @@ __ALIGN_BEGIN static uint8_t USBD_HID_CfgDesc[USB_HID_CONFIG_DESC_SIZ]  __ALIGN_
   /* 18 */
   0x09,         /*bLength: HID Descriptor size*/
   HID_DESCRIPTOR_TYPE, /*bDescriptorType: HID*/
-  0x11,         /*bcdHID: HID Class Spec release number*/
+  0x01,         /*bcdHID: HID Class Spec release number*/
   0x01,
   0x00,         /*bCountryCode: Hardware target country*/
   0x01,         /*bNumDescriptors: Number of HID class descriptors to follow*/
@@ -216,11 +217,11 @@ __ALIGN_BEGIN static uint8_t USBD_HID_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
 
 __ALIGN_BEGIN static uint8_t HID_MOUSE_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE]  __ALIGN_END =
 {
-// KEYBOARD 57 bytes
+// Keyboard 63 bytes
 0x05, 0x01,     //  USAGE_PAGE(generic desktop)
 0x09, 0x06,     //  USAGE(keyboard)
 0xA1, 0x01,     //  COLLECTION(application)
-0x05, 0x07,     //  USAGE_PAGE(keyboard)
+0x05, 0x07,     //      USAGE_PAGE(keyboard)
 // modifiers
 0x75, 0x01,     //      REPORT_SIZE(1)
 0x95, 0x08,     //      REPORT_COUNT(8)
@@ -229,6 +230,10 @@ __ALIGN_BEGIN static uint8_t HID_MOUSE_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE]  _
 0x15, 0x00,     //      LOGICAL_MINIMUM(0)
 0x25, 0x01,     //      LOGICAL_MAXIMUM(1)
 0x81, 0x02,     //      INPUT(data, var, abs)
+//reserved byte
+0x95, 0x01,     //      REPORT_COUNT(1)
+0x75, 0x08,     //      REPORT_SIZE(8)
+0x81, 0x01,     //      INPUT(constant)
 // LEDs
 0x05, 0x08,     //      USAGE_PAGE(LEDs)
 0x75, 0x01,     //      REPORT_SIZE(1)
@@ -238,18 +243,18 @@ __ALIGN_BEGIN static uint8_t HID_MOUSE_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE]  _
 0x91, 0x02,     //      OUTPUT(data, var, abs)
 0x75, 0x03,     //      REPORT_SIZE(3)
 0x95, 0x01,     //      REPORT_COUNT(1)
-0x91, 0x03,     //      OUTPUT(const, var, abs)  **padding**
+0x91, 0x01,     //      OUTPUT(const, var, abs)  **padding**
 // Keycodes
-0x05, 0x07,     //      USAGE_PAGE(keycodes)
-0x95, (HID_REPORT_BYTES - 1) * 8,     //      REPORT_COUNT(6)
-0x75, 0x01,     //      REPORT_SIZE(8)
+0x05, 0x07,     //      USAGE_PAGE(keyboard)
+0x95, 0x06,     //      REPORT_COUNT(6)
+0x75, 0x08,     //      REPORT_SIZE(8)
 0x15, 0x00,     //      LOGICAL_MINIMUM(0)
-0x25, 0x01,     //      LOGICAL_MAXIMUM(101)
+0x25, 0x65,     //      LOGICAL_MAXIMUM(101)
 0x19, 0x00,     //      USAGE_MINIMUM(0)
-0x29, (HID_REPORT_BYTES - 1) * 8 - 1,     //      USAGE_MAXIMUM(101)
-0x81, 0x02,     //      INPUT(data, var, abs)
+0x29, 0x65,     //      USAGE_MAXIMUM(101)
+0x81, 0x00,     //      INPUT(data, array, abs)
 0xC0,           //  END_COLLECTION
-// Total bytes = 57
+// total size 63
 }; 
 
 /**

@@ -105,7 +105,7 @@ struct mouseHID_t {
     int8_t wheel;
 };
 ```
-It should also be noted, looking at [this](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=79#page=81) specification, that this descriptor is also BOOT compatible given that the wheel is appended after the required BOOT structure, see [here](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=79#page=69).
+It should also be noted, looking at [this](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=81) specification, that this descriptor is also BOOT compatible given that the wheel is appended after the required BOOT structure, see [here](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=69).
 
 No for "funs" sake let's add a report ID to this descriptor as we will later need this when we combine it with a keyboard.
 Adding in the `REPORT_ID(1)` (0x85, 0x01) after `USAGE(pointer)` should give the report an ID from 1, also no longer making the mouse boot compatible and as such `bInterfaceSubClass` needs to be set to `0`.
@@ -183,7 +183,7 @@ Now we will use a keyboard example that is slightly differnt to the cube example
 0x91, 0x02,     //      OUTPUT(data, var, abs)
 0x75, 0x03,     //      REPORT_SIZE(3)
 0x95, 0x01,     //      REPORT_COUNT(1)
-0x91, 0x03,     //      OUTPUT(const, var, abs)  **padding**
+0x91, 0x01,     //      OUTPUT(const, var, abs)  **padding**
 0xC0,           //  END_COLLECTION
 // Media 37 bytes
 0x05, 0x0C,     //  USAGE_PAGE(consumer device)
@@ -249,7 +249,7 @@ struct keyboardHID_t myKeyboardHID = { .id = 2 };
 struct mediaHID_t myMediaHID = { .id = 3 };
 ```
 
-It should be noted that as the keyboard descriptor contains an ID and does not follow the structure [here](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=79#page=69) it is no longer BOOT compatible.
+It should be noted that as the keyboard descriptor contains an ID and does not follow the structure [here](https://www.usb.org/sites/default/files/documents/hid1_11.pdf#page=69) it is no longer BOOT compatible.
 
 As a key must be pressed and released using a similar loop to the following will send a keypress every second.
 
@@ -355,7 +355,7 @@ struct myHID_t {
 0x91, 0x02,     //      OUTPUT(data, var, abs)
 0x75, 0x03,     //      REPORT_SIZE(3)
 0x95, 0x01,     //      REPORT_COUNT(1)
-0x91, 0x03,     //      OUTPUT(const, var, abs)  **padding**
+0x91, 0x01,     //      OUTPUT(const, var, abs)  **padding**
 0xC0,           //  END_COLLECTION
 // MEDIA 37 bytes
 0x05, 0x0C,     //  USAGE_PAGE(consumer device)

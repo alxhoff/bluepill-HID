@@ -68,6 +68,12 @@ struct mouseHID_t {
     int8_t wheel;
 };
 
+struct bootHID_t {
+    uint8_t modifiers;
+    uint8_t reserved;
+    uint8_t keys[6];
+};
+
 struct keyboardHID_t {
 	uint8_t id;
 	uint8_t modifiers;
@@ -80,10 +86,12 @@ struct mediaHID_t {
 };
 
 struct nkroHID_t {
-    uint8_t id;
+    uint8_t modifiers;
+    uint8_t padding[7];
     uint8_t bitmap[HID_REPORT_BYTES - 1];
 };
 
+struct bootHID_t bootHID = {0};
 struct nkroHID_t nkroHID = {0};
 struct mouseHID_t mouseHID = { .id =1 };
 struct keyboardHID_t keyboardHID = { .id = 2 };
@@ -282,20 +290,37 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN 5 */
   /* Infinite loop */
-  mouseHID.x = 100;
   for(;;)
   {
-    osDelay(1000);
+    osDelay(500);
+    /** nkroHID.modifiers = 4; */
     /** NKRO_SET_BIT(nkroHID, 0x04); // a */
-    nkroHID.bitmap[15] |= (1 << 30);
+    /** nkroHID.bitmap[15] |= (1 << 4); */
     /** nkroHID.bitmap[HID_REPORT_BYTES - 1] |= (1 << 4); */
     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &nkroHID, sizeof(struct nkroHID_t));
-
-    /** osDelay(20); */
-    /** NKRO_ZERO(nkroHID); */
-    /** HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin); */
+    bootHID.keys[0] = 4;
+    bootHID.keys[1] = 5;
+    bootHID.keys[2] = 6;
+    bootHID.keys[3] = 7;
+    bootHID.keys[4] = 8;
+    bootHID.keys[5] = 9;
+    /** USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t)); */
     /** USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &nkroHID, sizeof(struct nkroHID_t)); */
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &bootHID, sizeof(struct bootHID_t));
+
+    osDelay(500);
+    /** nkroHID.modifiers = 0; */
+    /** NKRO_ZERO(nkroHID); */
+    HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+    bootHID.keys[0] = 0;
+    bootHID.keys[1] = 0;
+    bootHID.keys[2] = 0;
+    bootHID.keys[3] = 0;
+    bootHID.keys[4] = 0;
+    bootHID.keys[5] = 0;
+    /** USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &keyboardHID, sizeof(struct keyboardHID_t)); */
+    /** USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &nkroHID, sizeof(struct nkroHID_t)); */
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &bootHID, sizeof(struct bootHID_t));
   }
   /* USER CODE END 5 */ 
 }
