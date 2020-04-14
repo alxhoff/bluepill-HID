@@ -1,6 +1,7 @@
 # Prerequisites
 *.d
 cube/build
+cmake/build
 
 # Object files
 *.o
